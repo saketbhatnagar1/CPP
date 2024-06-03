@@ -51,7 +51,31 @@ void print(Node *&head)
     }
     cout << endl;
 }
+void insertAtPosition(Node *head, int position, int d)
+{
+    Node *temp = head;
+    int count = 1;
+    while (count <= position - 1)
+    {
+        temp = temp->next;
+        count++;
+    }
+    // create a node for d;
+    Node *nodeToInset = new Node(d);
+    nodeToInset->next = temp->next;
+    temp->next = nodeToInset;
+}
+void print(Node *&head)
+{
+    Node *temp = head;
 
+    while (temp != NULL)
+    {
+        cout << temp->data << " ";
+        temp = temp->next;
+    }
+    cout << endl;
+}
 int main()
 {
     // created a new node
