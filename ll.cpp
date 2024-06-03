@@ -36,6 +36,46 @@ public:
         std::cout << std::endl;
     }
 };
+void insertathead(Node* &head,int data) //we passed head as a refrence because we dont want to make a copy,rather we want to update the orignal linked list
+{
+
+    cout<<"Insert at head called"<<endl;
+    //new node creation:
+    Node* temp = new Node(data);
+    temp->next=head;
+    head=temp;
+}
+void isnertattail(Node* &tail,int data){
+    Node*temp = new Node(data);
+    tail->next = temp;//tail is a pointer tha points to the last node:
+    tail = temp;//tail->next holds adress of the new node created that is last node
+     
+}
+void insertatindex(Node * &head,int position,int data)
+{
+    
+    //if we want to go to nth position we have to go till n-1th position:
+
+    if(position==1){
+        insertathead(head,data);
+        return;
+    }
+
+    int count = 1;
+    Node* temp = head;
+
+     while(count<=position-1)
+    {
+        temp = temp->next;
+        count++;
+    }
+    Node * nodetoinsert= new Node(data);
+    nodetoinsert->next = temp->next;
+    temp->next = nodetoinsert; 
+    //length of LL
+
+}
+
 
 int main() {
     LinkedList list;
