@@ -156,39 +156,7 @@ void printArray(const vector<int>& arr) {
 } // namespace std
 
 int main() {
-    vector<int> arr = {64, 34, 25, 12, 22, 11, 90};
-
-    cout << "Original array: ";
-    std::printArray(arr);
-
-    std::bubbleSort(arr);
-    cout << "Bubble Sorted array: ";
-    std::printArray(arr);
-
-    arr = {64, 34, 25, 12, 22, 11, 90};
-    std::selectionSort(arr);
-    cout << "Selection Sorted array: ";
-    std::printArray(arr);
-
-    arr = {64, 34, 25, 12, 22, 11, 90};
-    std::insertionSort(arr);
-    cout << "Insertion Sorted array: ";
-    std::printArray(arr);
-
-    arr = {64, 34, 25, 12, 22, 11, 90};
-    std::mergeSort(arr, 0, arr.size() - 1);
-    cout << "Merge Sorted array: ";
-    std::printArray(arr);
-
-    arr = {64, 34, 25, 12, 22, 11, 90};
-    std::quickSort(arr, 0, arr.size() - 1);
-    cout << "Quick Sorted array: ";
-    std::printArray(arr);
-
-    arr = {64, 34, 25, 12, 22, 11, 90};
-    std::heapSort(arr);
-    cout << "Heap Sorted array: ";
-    std::printArray(arr);
+   
 
     return 0;
 }
