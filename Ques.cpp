@@ -1,5 +1,6 @@
-#include <iostream>
 
+#include <iostream>
+using namespace std;
 // Define a Node structure for the queue
 struct Node {
     int data;
@@ -83,7 +84,7 @@ int main() {
     q.enqueue(40);
 
     // Display the size of the queue
-    std::cout << "Size of queue: " << q.size() << std::endl;
+    cout << "Size of queue: " << q.size() << std::endl;
 
     // Access the front element
     if (!q.isEmpty()) {
@@ -92,13 +93,13 @@ int main() {
 
     // Dequeue an element from the queue
     q.dequeue();
-    std::cout << "After one dequeue, front element: " << q.front() << std::endl;
+    cout << "After one dequeue, front element: " << q.front() << std::endl;
 
     // Display the size of the queue after dequeue
-    std::cout << "Size of queue after one dequeue: " << q.size() << std::endl;
+    cout << "Size of queue after one dequeue: " << q.size() << std::endl;
 
     // Traverse and dequeue all elements
-    std::cout << "Dequeuing all elements:" << std::endl;
+    cout << "Dequeuing all elements:" << std::endl;
     while (!q.isEmpty()) {
         std::cout << q.front() << " ";
         q.dequeue();
