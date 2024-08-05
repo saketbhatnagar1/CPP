@@ -1,5 +1,38 @@
 #include <iostream>
 using namespace std;
+
+
+//function to check valid palindrome of string ignoring non alphanumeric values and converting all to lower case:
+    bool isPalindrome(string s) {
+            int left = 0;
+            int right = s.length()-1;
+
+            while(left<right)
+            {
+                if(!isalnum(s[left]))
+                {
+                    left++;
+                }
+                else if(!isalnum(s[right]))
+                {
+                    right--;
+                }else if(tolower(s[left])==tolower(s[right]))
+                {
+                    left++;
+                    right--;
+                }else{
+                    return false;
+                }
+            }
+            return true;
+    
+};
+
+
+
+
+
+
 void swp(int &a, int &b)
 {
     int temp;
