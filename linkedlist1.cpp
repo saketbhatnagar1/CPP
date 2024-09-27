@@ -1,96 +1,200 @@
 #include <iostream>
+#include <bits/stdc++.h>
 using namespace std;
 class Node
 {
 public:
     int data;
-    Node *next; // points to objects of node
+    Node *next;
     Node(int data)
     {
         this->data = data;
         this->next = NULL;
     }
 };
-// |data|next|-->|NULL|
-
-void InsertAtHead(Node *&head, int d) /*we pass refrence to head so that insertion takes place at the orignal ll and of the orignal node,we dont want a copy to be made*/
+void traverse(Node *head)
 {
-    Node *temp = new Node(d);
+    // traversel in linked list::
+
+    Node *tempp = head;
+    while (tempp != NULL)
+    {
+        cout << tempp->data << " ";
+
+        tempp = tempp->next;
+    }
+    cout << endl;
+    cout << "Traverserl complete" << endl;
+}
+Node *ArrtoLL(vector<int> &arr)
+
+{
+    Node *head = new Node(arr[0]);
+    Node *mover = head;
+    int n = arr.size();
+    for (int i = 1; i < n; i++)
+    {
+        Node *temp = new Node(arr[i]);
+        mover->next = temp;
+        mover = mover->next;
+    }
+    return head;
+}
+Node *deleteHead(Node *head)
+{
+
+    Node *temp = head;
+    head = head->next;
+    delete temp;
+    return head;
+}
+Node *deleteTail(Node *head)
+{
+    if (head == NULL || head->next == NULL)
+    {
+        return head;
+    }
+    Node *temp = head;
+
+    while (temp->next->next != NULL)
+    {
+        temp = temp->next;
+    }
+    delete temp->next;
+    temp->next = NULL;
+    return head;
+}
+// delet kth element:;
+Node *DeleteKth(Node *head, int k)
+{
+    if (head == NULL)
+    {
+        return head;
+    }
+    if (k == 1)
+    {
+        Node *temp = head;
+        head = head->next;
+        delete temp;
+        return head;
+    }
+
+    int count = 1;
+    Node *temp = head;
+    Node *prev = NULL;
+    while (temp->next != NULL)
+    {
+        if (count == k)
+        {
+            prev->next = prev->next->next;
+            delete temp;
+            break;
+        }
+        prev = temp;
+        temp = temp->next;
+        count++;
+    }
+    return head;
+}
+
+Node *elemnt(Node *head, int ele)
+{
+    if (head == NULL)
+    {
+        return head;
+    }
+
+    Node *temp = head;
+    Node *prev = NULL;
+    while (temp->next != NULL)
+    {
+        if (temp->data == ele)
+        {
+            prev->next = prev->next->next;
+            delete temp;
+            break;
+        }
+        prev = temp;
+        temp = temp->next;
+    }
+    return head;
+}
+Node *insertatHead(Node *head, int data)
+{
+    Node *temp = new Node(data);
     temp->next = head;
     head = temp;
+    return head;
 }
-void insertAtTail(Node *&tail, int d)
+Node *insertattail(Node *head, int data)
 {
+    // crerating a node as the tail
 
-    Node *temp = new Node(d);
-    tail->next = temp;
-    tail = temp;
-}
-void insertAtPosition(Node *head, int position, int d)
-{
     Node *temp = head;
-    int count = 1;
-    while (count <= position - 1)
+    while (temp->next != NULL)
     {
         temp = temp->next;
+    }
+    Node *tail = new Node(data);
+    temp->next = tail;
+
+    return head;
+}
+Node *insertatK(Node *head, int data, int k)
+{
+    Node *nodek = new Node(data);
+    Node *temp = head;
+    int count = 0;
+    while (temp->next != NULL)
+    {
         count++;
+        if (k == 0)
+        {
+            nodek->next = head;
+            return nodek; // New head
+        }
+        if (count == k)
+        {
+            nodek->next = temp->next;
+            temp->next = nodek;
+        }
+        temp = temp->next;
     }
-    // create a node for d;
-    Node *nodeToInset = new Node(d);
-    nodeToInset->next = temp->next;
-    temp->next = nodeToInset;
+    return head;
 }
-void print(Node *&head)
-{
-    Node *temp = head;
 
-    while (temp != NULL)
-    {
-        cout << temp->data << " ";
-        temp = temp->next;
-    }
-    cout << endl;
-}
-void insertAtPosition(Node *head, int position, int d)
-{
-    Node *temp = head;
-    int count = 1;
-    while (count <= position - 1)
-    {
-        temp = temp->next;
-        count++;
-    }
-    // create a node for d;
-    Node *nodeToInset = new Node(d);
-    nodeToInset->next = temp->next;
-    temp->next = nodeToInset;
-}
-void print(Node *&head)
-{
-    Node *temp = head;
 
-    while (temp != NULL)
-    {
-        cout << temp->data << " ";
-        temp = temp->next;
-    }
-    cout << endl;
-}
 int main()
 {
-    // created a new node
-    Node *node1 = new Node(5); // creates a object in heap,node1 stores the adress of the object created in heap using new keyword
-                               //    cout << node1->data;
-    Node *head = node1;
-    Node *tail = node1;
-    print(tail); // head points to adress of node 1 i.e we re assigned value of adress of node 1 to head pointer
-                 //  insert at head;
-    insertAtTail(tail, 12);
-    print(tail);
-    insertAtTail(tail, 10);
-    print(head);
-    insertAtTail(tail, 15);
-    print(head);
+    vector<int> arr;
+    arr = {133221, 2, 3, 4, 5, 6, 7};
+    int n = 7;
 
+    Node *head = ArrtoLL(arr);
+    traverse(head);
+    head = insertattail(head, 102);
+    traverse(head);
+    head = insertatK(head, 345, 3);
+    cout << "Inserting 345 at 3" << endl;
+    traverse(head);
     return 0;
 }
+// testing parametres::
+
+// cout << endl;
+// traverse(head);
+// cout << endl;
+// // deletion of head;
+// head = deleteHead(head);
+// traverse(head);
+// DeleteKth(head, 3);
+// cout << endl;
+// cout << "After deleting " << 3 << "rd element" << endl;
+// traverse(head);
+// cout << endl;
+// elemnt(head, 3);
+// traverse(head);
+// cout << "After deleting " << 3 << " " << endl;
+// traverse(head);
+// insertatHead(head, 629);
+// cout << "After inserting 629 at head" << endl;
